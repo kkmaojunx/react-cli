@@ -1,10 +1,11 @@
 {
-  "name": "react-cli-easy",
+  "name": "react-cli-awesome",
   "version": "1.0.0",
   "description": "A Configurable React Cli",
   "bin": {
     "react-cli": "bin/react-cli"
   },
+  "keywords": ["react-cli","redux","react-router","webpack","babel"],
   "files": ["bin","lib"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,8 +14,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "repository": {
-    "type": "git",
-    "url": "http://www.lazyjmx.top:10080/maojunxian/react-cli.git"
+    "type": "github",
+    "url": "https://github.com/kkmaojunx/react-cli"
   },
   "author": "abel",
   "license": "MIT",
