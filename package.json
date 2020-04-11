@@ -1,0 +1,34 @@
+{
+  "name": "react-cli-easy",
+  "version": "1.0.0",
+  "description": "A Configurable React Cli",
+  "bin": {
+    "react-cli": "bin/react-cli"
+  },
+  "files": ["bin","lib"],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://www.lazyjmx.top:10080/maojunxian/react-cli.git"
+  },
+  "author": "abel",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^3.2.0",
+    "chalk": "^3.0.0",
+    "commander": "^5.0.0",
+    "download-git-repo": "^3.0.2",
+    "fs": "^0.0.1-security",
+    "handlebars": "^4.0.12",
+    "inquirer": "^7.1.0",
+    "metalsmith": "^2.3.0",
+    "minimatch": "^3.0.4",
+    "ora": "^4.0.3",
+    "rimraf": "^3.0.2"
+  }
+}

@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+const commander=require('commander');
+commander.version(require('../package').version)
+    .option('-r','remote control')
+    .command('init <template-name>','Init a React template')
+.command('delete','delete this package').parse(process.argv);

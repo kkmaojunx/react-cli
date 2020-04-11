@@ -1,0 +1,79 @@
+#!/usr/bin/env node
+
+const commander = require('commander');
+const chalk = require('chalk');
+const download = require('download-git-repo')
+const fs = require('fs');
+const ora = require('ora');
+const generate = require('../lib/generate');
+const rm = require('rimraf').sync;
+
+/***Make a judgement of project name***/
+
+commander
+    .usage('<template-name> [project-name]')
+commander.parse(process.argv);
+
+/**
+ * Help.
+ */
+
+commander.on('--help', () => {
+    console.log('  Examples:')
+    console.log()
+    console.log(chalk.gray('    # create a new project with an official template'))
+    console.log('    $ react-cli init my-project')
+    console.log()
+})
+
+if (commander.args.length === 0) {
+    console.log(chalk.red('\n Please input the Template name \n '))
+    return commander.help()
+}
+
+
+const projectName = commander.args[0]
+fs.readdir(process.cwd(), (err, files) => {
+    if (files.includes(projectName)) {
+        return console.log(chalk.red('\n The package name has exist,Please modify the template name \n '))
+    }
+    const spinner = ora("Downloading Template...");
+    spinner.start();
+    download(
+        'direct:http://www.lazyjmx.top:10080/maojunxian/react-cli-template.git',
+        projectName + '/',
+        {clone: true},
+        err => {
+            if (err) {
+                spinner.fail();
+                console.log(chalk.red(`Download failed. ${err}`))
+                return
+            }
+            spinner.succeed();
+            handleTemplate()
+
+        }
+    )
+})
+
+function handleTemplate() {
+    generate(projectName, (err, info) => {
+        if (err) {
+            rm(path.join(process.cwd(), projectName))
+        } else {
+            console.log(chalk.green('\n Generation completed!'))
+            console.log(`\n cd ${projectName} \n`)
+            console.log(`\n npm install \n`)
+            consoleFunction(info)
+
+        }
+    })
+}
+
+function consoleFunction(info) {
+    if (info && info.webpack === 'React') {
+        console.log(`\n npm run dev \n`)
+    } else {
+        console.log(`\n npm run babel:build \n`)
+    }
+}
